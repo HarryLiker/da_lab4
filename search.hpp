@@ -10,8 +10,6 @@ struct TWord {
     unsigned int WordId;
 };
 
-void WordClear(char word[MAX_SIZE+1]) {
-    for (int i = 0; i < MAX_SIZE + 1; ++i) {
-        word[i] = 0;
-    }
-}
+void WordClear(char *word);
+
+std::vector<unsigned int> ZFunction(const std::vector<TWord> & vector);

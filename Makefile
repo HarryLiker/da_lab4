@@ -8,7 +8,7 @@ FLAGS_O3 = -std=c++17 -O3
 all: solution
 
 solution: main.o search.o
-	$(CC) $(CFLAGS) main.o search.o -o solution 
+	$(CC) main.o search.o -o solution 
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp

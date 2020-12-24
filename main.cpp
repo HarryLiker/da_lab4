@@ -21,6 +21,7 @@ int main() {
                 pattern_string = 0;
                 current_word.StringId = 1;
             }
+            current_word.WordId = 1;
         } else if (c == ' ' || c == '\t') {
             if (i > 0) {
                 text.push_back(current_word);
