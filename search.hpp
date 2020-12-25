@@ -11,5 +11,6 @@ struct TWord {
 };
 
 void WordClear(char *word);
+void RightWord(unsigned int index, char *word);
 
-std::vector<unsigned int> ZFunction(const std::vector<TWord> & vector);
+std::vector<unsigned int> ZFunction(const std::vector<TWord> & text);
