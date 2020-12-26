@@ -1,4 +1,3 @@
-
 cmake_minimum_required (VERSION 3.2)
 project (DA)
 add_executable (da_lab4 main.cpp search.cpp)

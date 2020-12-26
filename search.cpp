@@ -35,14 +35,14 @@ std::vector<unsigned long long> ZFunction(const std::vector<TWord> &text) {
     std::vector<unsigned long long> z_function(size);
     for (unsigned long long i = 1; i < size; ++i) {
         if (i <= right) {
-            z_function[i] = std::min(z_function[i-left], right - i);
+            z_function[i] = std::min(z_function[i-left], right - i + 1);
         }
         while ((z_function[i] + i < size) && (text[z_function[i]] == text[z_function[i] + i])) {
             ++z_function[i];
         }
-        if (i + z_function[i] > right) {
+        if (i + z_function[i] - 1 > right) {
             left = i;
-            right = z_function[i] + i;
+            right = z_function[i] + i - 1;
         }
     }
     return z_function;

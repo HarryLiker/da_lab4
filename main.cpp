@@ -4,7 +4,6 @@
 #include <ctime>
 
 int main() {
-    double start, end;
     std::vector<TWord> text;
     bool pattern_string = 1;
     unsigned long long pattern_size = 0;
@@ -14,6 +13,7 @@ int main() {
     while (c > 0) {
         if (c == '\n') {
             if (i > 0) {
+                RightWord(i, current_word.Word);
                 text.push_back(current_word);
                 WordClear(current_word.Word);
                 i = 0;
@@ -51,14 +51,11 @@ int main() {
     if (i > 0) {
         text.push_back(current_word);
     }
-    start = clock();
     std::vector<unsigned long long> res = ZFunction(text);
     for (unsigned long long i = pattern_size + 1; i < res.size(); i++) {
         if (res[i] == pattern_size) {
             std::cout << text[i].StringId << ", " << text[i].WordId << "\n";
         }
     }
-    end = clock();
-    //std::cout << "Time of working: " << (end - start) / CLOCKS_PER_SEC << " seconds" << "\n";
 }
 
