@@ -10,7 +10,7 @@ void WordClear(char word[MAX_SIZE]) {
 }
 
 void RightWord(unsigned int index, char *word) {
-    for (unsigned int i = index; i < MAX_SIZE + 1; i++) {
+    for (int i = index; i < MAX_SIZE + 1; i++) {
         word[i] = 0;
     }
 }
@@ -28,12 +28,12 @@ bool operator != (const TWord &left_value, const TWord &right_value) {
     return !(left_value == right_value);
 }
 
-std::vector<unsigned int> ZFunction(const std::vector<TWord> &text) {
-    unsigned int size = text.size();
-    unsigned int left = 0;
-    unsigned int right = 0;
-    std::vector<unsigned int> z_function(size);
-    for (unsigned int i = 1; i < size; ++i) {
+std::vector<unsigned long long> ZFunction(const std::vector<TWord> &text) {
+    unsigned long long size = text.size();
+    unsigned long long left = 0;
+    unsigned long long right = 0;
+    std::vector<unsigned long long> z_function(size);
+    for (unsigned long long i = 1; i < size; ++i) {
         if (i <= right) {
             z_function[i] = std::min(z_function[i-left], right - i);
         }

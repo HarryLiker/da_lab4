@@ -1,13 +1,16 @@
 #include <iostream>
 #include "search.hpp"
+#include <cstring>
+#include <ctime>
 
 int main() {
+    double start, end;
     std::vector<TWord> text;
     bool pattern_string = 1;
-    unsigned int pattern_size = 0;
+    unsigned long long pattern_size = 0;
     TWord current_word;
     char c = getchar(); // For every character in text
-    unsigned int i = 0; // Character index in word
+    unsigned long long i = 0; // Character index in word
     while (c > 0) {
         if (c == '\n') {
             if (i > 0) {
@@ -48,12 +51,14 @@ int main() {
     if (i > 0) {
         text.push_back(current_word);
     }
-
-    std::vector<unsigned int> res = ZFunction(text);
-    for (unsigned int i = pattern_size + 1; i < res.size(); i++) {
+    start = clock();
+    std::vector<unsigned long long> res = ZFunction(text);
+    for (unsigned long long i = pattern_size + 1; i < res.size(); i++) {
         if (res[i] == pattern_size) {
             std::cout << text[i].StringId << ", " << text[i].WordId << "\n";
         }
     }
+    end = clock();
+    //std::cout << "Time of working: " << (end - start) / CLOCKS_PER_SEC << " seconds" << "\n";
 }
 

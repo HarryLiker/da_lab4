@@ -6,11 +6,11 @@ const unsigned short MAX_SIZE = 16;
 
 struct TWord {
     char Word[MAX_SIZE+1];
-    unsigned int StringId;
-    unsigned int WordId;
+    unsigned long long StringId;
+    unsigned long long WordId;
 };
 
 void WordClear(char *word);
 void RightWord(unsigned int index, char *word);
 
-std::vector<unsigned int> ZFunction(const std::vector<TWord> & text);
+std::vector<unsigned long long> ZFunction(const std::vector<TWord> & text);
