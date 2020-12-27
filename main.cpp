@@ -1,55 +1,37 @@
 #include <iostream>
 #include "search.hpp"
-#include <cstring>
+#include <string>
+#include <sstream>
 #include <ctime>
 
 int main() {
     std::vector<TWord> text;
-    bool pattern_string = 1;
     unsigned long long pattern_size = 0;
-    TWord current_word;
-    char c = getchar(); // For every character in text
-    unsigned long long i = 0; // Character index in word
-    while (c > 0) {
-        if (c == '\n') {
-            if (i > 0) {
-                RightWord(i, current_word.Word);
-                text.push_back(current_word);
-                WordClear(current_word.Word);
-                i = 0;
+    unsigned long long text_size;
+    unsigned long long line = 0;
+    unsigned long long word_number = 1;
+    std::string input;
+    while (std::getline(std::cin, input)) {
+        std::string word;
+        std::stringstream temp_string(input);
+        while (temp_string >> word) {
+            WordToLower(word);
+            TWord current_word(word, line, word_number);
+            text.push_back(current_word);
+            if (line != 0) {
+                text_size++;
+            } else {
+                pattern_size++;
             }
-            ++current_word.StringId;
-            if (pattern_string) {
-                TWord stop_word;
-                stop_word.Word[0] = '$';
-                text.push_back(stop_word);
-                current_word.StringId = 1;
-                ++pattern_size;
-                pattern_string = 0;
-            }
-            current_word.WordId = 1;
-        } else if (c == ' ' || c == '\t') {
-            if (i > 0) {
-                RightWord(i, current_word.Word);
-                text.push_back(current_word);
-                WordClear(current_word.Word);
-                i = 0;
-                ++current_word.WordId;
-                if (pattern_string) {
-                    ++pattern_size;
-                }
-            }
-        } else {
-            if ('A' <= c && c <= 'Z') {
-                c = c - 'A' + 'a';
-            }
-            current_word.Word[i] = c;
-            ++i;
+            word_number++;
         }
-        c = getchar();
-    }
-    if (i > 0) {
-        text.push_back(current_word);
+        if (line == 0) {
+            std::string delimiter = "$";
+            TWord current_word(delimiter, line, word_number);
+            text.push_back(current_word);
+        }
+        line++;
+        word_number = 1;
     }
     std::vector<unsigned long long> res = ZFunction(text);
     for (unsigned long long i = pattern_size + 1; i < res.size(); i++) {
